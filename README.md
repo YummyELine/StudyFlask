@@ -19,3 +19,16 @@ improt config
 app.config.from_object(config)
 ```
 3. 还有许多的其他参数，都是放在这个配置文件中，比如'SECRET_KEY'和'SQLALCHEMY'这些配置，都是在这个文件中。
+
+### 04URL传参数：
+1. 参数的作用：可以在相同的URL，但是指定不同的参数，来加载不同的数据。
+2.在Flask中如何使用参数：
+```
+@app.route('/article/<id>')
+def article(id):
+    return('您请求的参数是：{0}'.format(id))
+```
+* 参数需要放在两个尖括号中。
+* 视图函数中需要放和URL总的参数同名的参数。
+
+### 05反转URL：
