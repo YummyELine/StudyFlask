@@ -60,3 +60,8 @@ def article(id):
 {% endif %}
 ```
 2. if的使用，可以和python中相差无几。
+
+### 09 for循环遍历列表和字典：
+1. 字段的遍历，语法和‘Python’一样，可以使用‘items()’，‘keys()’，‘values()’，‘iteritems()’，‘iterkeys()’，‘itervalues()’
+2. 列表的遍历，语法和‘Python’一样
+
