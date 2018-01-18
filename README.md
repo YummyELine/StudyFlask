@@ -65,3 +65,13 @@ def article(id):
 1. 字段的遍历，语法和‘Python’一样，可以使用‘items()’，‘keys()’，‘values()’，‘iteritems()’，‘iterkeys()’，‘itervalues()’
 2. 列表的遍历，语法和‘Python’一样
 
+### 10 过滤器：
+1. 介绍和语法：
+* 介绍：过滤器可以处理变量，把原始的变量经过处理后再展示出来。
+* 语法
+```
+{{ avatar|default('XXX') }}
+```
+2. default过滤器：如果当前变量不存在，这时候可以指定默认值、
+3. length过滤器：求列表或者字符串或者字典或者元组的长度。
+4. [其他过滤器](http://www.bjhee.com/jinja2-filter.html)
