@@ -48,8 +48,12 @@ SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8".format(DIALECT, 
 ```
 metadata = orm.MetaData(db)
 ```
-4、做测试，看有没有问题：
+4. 做测试，看有没有问题：
 ```
 metadata.create_all()
 ```
 * 如果没有报错，说明配置没有问题，如果有错误，可以根据错误进行修改。
+
+### 05 使用sqlalchemy创建模型与表的映射：
+
+
