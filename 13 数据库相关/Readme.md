@@ -141,4 +141,73 @@ db = SQLAlchemy(app)
 ```pyton
 db.create_all()
 ```
+
 如果没有报错，说明配置没有问题，如果有错误，可以根据错误进行修改。
+
+## 07 使用Flask-SQLALchemy创建模型与表的映射。
+
+1. 模型需要继承自‘db.Model’，然后需要映射到表中的属性，必须写成‘db.Column’的数据类型。
+2. 数据类型
+* ‘db.Integer’代表的是整形。
+* ‘db.String’代表的是‘varchar’，需要指定最长的长度。
+* ‘db.Text’代表的是‘text’
+
+3. 其他参数：
+* ‘primary_key’：代表的是将这个字段设置为主键。
+* ‘autoincrement’：代表的是这个主键为自增长的。
+* ‘nullable’：代表的是这个字段是否可以为空，默认可以为空，可以将这个值设置为‘False’，在数据库中，这个值就不能为空了。
+
+4. 最后需要调用‘db.create_all’来将模型真正的创建到数据库中。
+
+## 08 Flask-SQLALchemy数据的增、删、改、查：
+
+1. 增：
+
+```python
+    #  增加：
+    article1 = Article(title='aaa', content='bbb')
+    db.session.add(article1)
+    # 事物
+    db.session.commit()
+```
+
+2. 查：
+
+```python
+   # 查
+    # select * from article where title='aaa'
+    result = Article.query.filter(Article.title == 'aaa').all()
+    article1 = result[0]
+    print(article1.title)
+    print(article1.content)
+    Article.query.filter(Article.title == 'aaa').first()
+
+```
+
+3. 改：
+
+```python
+    # 改
+    # 1.先把你要改的数据查找出来
+    article1 = Article.query.filter(Article.title == 'aaa').first()
+    # 2.把这条数据，你需要修改的地方进行修改。
+    article1.title = 'new title'
+    # 3.做事物的提交。
+    db.session.commit()
+```
+
+4. 删：
+
+```python
+  # 删
+    # 1.把需要删除的数据查找出来。
+    article1 = Article.query.filter(Article.content=='bbb').first()
+    # 2.把这条数据删除掉
+    db.session.delete(article1)
+    # 3.做事物提交
+    db.session.commit()
+```
+
+## 09 Flask_SQLALchemy外键及其关系：
+
+1. 
