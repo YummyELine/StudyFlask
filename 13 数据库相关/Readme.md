@@ -271,3 +271,54 @@ class Article(db.Model):
         print(tag.name)
 
 ```
+
+## 10 Flask-Script的介绍与安装：
+
+1. Flask-Script: Flask-Script的作用是可以通过命令的形式来操作Flask.例如通过命令跑一个开发版本的服务器、设置数据库，定时任务等。
+2. 安装：进入到虚拟环境中，然后'pip install flask-script'来进行安装，anaconda使用命令‘conda install -c conda-forge flask-script’。
+3. 如果直接在主‘manage.py’中写命令，那么在终端就只要‘pyton manage.py command_name’就可以了。
+4. 如果把一些命令集中在一个文件中，那么在终端就需要输入一个父命令，比如‘python manage.py db init’。
+5. 例子：
+
+```python
+#!/usr/bin/env python
+# encoding:utf-8
+
+from flask_script import Manager
+from flask_script_demo import app
+from db_scripys import DBmanager
+
+manager = Manager(app)
+
+
+# 和数据库相关的操作，我都放在一起。
+@manager.command
+def runserver():
+    print('服务器跑起来了。')
+
+
+manager.add_command('db', DBmanager)
+
+if __name__ == '__main__':
+    manager.run()
+```
+
+6. 有子命令的列子:
+
+```python
+#!/usr/bin/env python
+# coding:utf-8
+from flask_script import Manager
+
+DBmanager = Manager()
+
+
+@DBmanager.command
+def init():
+    print('数据库初始化完成')
+
+
+@DBmanager.command
+def migrate():
+    print('数据表迁移成功')
+```
