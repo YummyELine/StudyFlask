@@ -122,3 +122,7 @@ url_for('static',filename='路径')
 
 * 静态文件，flask会从’static'文件夹中开始寻找，所以不需要写‘static’这个路径了。
 * 可以加载‘css’、‘js’、‘image’文件，
+
+## 13 数据库相关知识
+
+## 14 知识点：session、cookie、get、post、g对象、before_request钩子函数、context_request钩子函数。
