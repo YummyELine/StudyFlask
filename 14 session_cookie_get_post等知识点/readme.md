@@ -23,6 +23,19 @@
 * 存储在服务端：通过cookie存储一个session_id，然后具体的数据则是保存在session中，如果用户已经登录，则服务器会在cookie中保存一个session_id，下次再次请求的时候，会把该session_id携带上来，服务器根据session_id在session库中获取用户的session数据。就能知道该用户到底是谁，以及之前保存的一些状态信息。这种专业术语叫做server side session.
 * 将session数据加密，然后存储在cookie中。这种专业术语叫做client side session。flask采用的就是这种方式，但是也可以替代乘其他形式
 
+## flask中使用cookie和session
+
+1. cookies：在Flask中操作cookies，是通过response对象操作，可以在response返回之前，通过response.set_cookie来设置，这个方法有以下几个参数需要注意：
+
+* key:设置的cookie的key。
+* value：key对应的value。
+* max_age：改cookie的过期时间，如果不设置，则浏览器关闭后就会自动过期。
+* expires：过期时间，应该是一个datetime类型。
+* domain：该cookie在那个域名中有效，一般设置子域名，比如cms.example.com。
+* path：该cookie在哪个路径下有效。
+
+2. session：Flask中的session是通过from flask import session。然后添加值key和value进去即可。并且，flask中的session机制是将session信息加密，然后存储在cookie中。专业术语叫做client side session。
+
 ## 01 flask中的session工作机制：
 
 1. flask中的session机制是：把敏感数据经过加密后放入‘session’中，然后再把‘session’存放到‘cookies’中，下次请求的时候，再从浏览器发送过来的‘cookie’中读取‘session’，然后在从‘session’中读取敏感数据，并进行解密，获取最终的用户数据。
@@ -32,6 +45,16 @@
 ## 02 操作session：
 
 1. session的操作方式：
-2. 给session添加数据：
-3. 删除session中的数据：
-4. 设置session的过期时间： 
+* 使用‘session’需要从‘flask’中导入‘session’，以后所有和‘session’相关的操作都是通过这个变量来的、
+* 使用‘session’需要设置‘SECRET_KEY’，用来作为加密用的。并且这个‘SECRET_KEY’如果每次服务器启动后都变化的话，那么之前的‘session’就不能再通过当前这个‘SECRET_KEY’进行解密了。
+* 操作‘session’的时候，跟操作字典是一样的。
+* 添加‘session’：‘session['username']’。
+* 删除：‘session.pop('username')’或者‘del session['username']’。
+* 清除所有‘session’：‘session.clear()’。
+* 获取‘session’：‘session.get('username')’。
+
+2. 设置session的过期时间：
+
+* 如果没有指定session的过期时间，那么默认是浏览器关闭后就自动结束。
+* 如果设置了session的permanent属性为True,那么过期时间是31天。
+* 可以通过给‘app.config’设置‘PERMANENT_SESSION_LIFETIME’来更改过期时间，这个值的数据类型是‘datetime.timedelay’类型。
