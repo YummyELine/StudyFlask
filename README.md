@@ -125,4 +125,6 @@ url_for('static',filename='路径')
 
 ## 13 数据库相关知识
 
-## 14 知识点：session、cookie、get、post、g对象、before_request钩子函数、context_request钩子函数。
+## 14 知识点：session、cookie
+
+## 15 知识补充：get、post、g对象、before_request钩子函数、context_request钩子函数。
