@@ -33,7 +33,7 @@ scheme://host:port/path/?query-string=xxx#anchor
 
 * input标签中，要写name来标识这个value和key,方便后台获取。
 * 在写form表单的时候，要指定‘method='post'’,并且要指定‘action='/login/'’。
-* 
+
 
 ## 钩子函数：
 
