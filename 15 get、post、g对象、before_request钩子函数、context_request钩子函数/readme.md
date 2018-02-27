@@ -25,7 +25,7 @@ scheme://host:port/path/?query-string=xxx#anchor
 * 使用场景：如果要对服务器产生影响，那么就使用post请求。
 * 传参：post请求传参不是放在URL中，是通过‘from data’的形式发送给服务器的。
 
-## 1、get和post 请求获取参数：
+## 01、get和post 请求获取参数：
 
 1. get 请求是通过‘flask.request.args’来获取。
 2. post 请求是通过‘flask.request.form’来获取。
@@ -34,6 +34,22 @@ scheme://host:port/path/?query-string=xxx#anchor
 * input标签中，要写name来标识这个value和key,方便后台获取。
 * 在写form表单的时候，要指定‘method='post'’,并且要指定‘action='/login/'’。
 
+## 02保存全局变量的g属性
 
-## 钩子函数：
+g:global
 
+1. g对象是专门用来保存用户的数据的。
+2. g对象在一次请求中的所有的代码的地方，都是可以使用的。
+
+## 03钩子函数：
+
+1. before_request:
+
+* 在请求之前执行的。
+* 是在试图函数执行之前执行的。
+* 这个函数只是一个装饰器，他可以把需要设置为钩子函数的代码放到视图函数执行之前来执行
+
+2. context_processor:
+
+* 上下文处理器应该返回一个字典，字典中的‘KEY’会被模版中当成变量来渲染。
+* 上下文处理器中返回的字典，在所有页面中都是可用的。
