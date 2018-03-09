@@ -352,7 +352,7 @@ from flask_migrate import Migrate, MigrateCommand
 from exts import db
 from models import Article
 
-# python manage.py db init  第一此执行
+# python manage.py db init  第一次执行
 # python manage.py db migrate 都要执行
 # python manage.py db upgrade 都要执行
 # 模型 -> 迁移文件 -> 表
